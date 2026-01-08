@@ -10,7 +10,7 @@
     Created by .schlonny
     Version: 2.1.0
     License: MIT
-    Github: https://github.com/zeropointerexception/roblox-mathlib
+    Github: https://github.com/Schlonny-Tech/roblox-mathlib
     
     Features:
     • Advanced noise generation (Perlin, Simplex, Value)
