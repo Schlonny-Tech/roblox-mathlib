@@ -2,7 +2,7 @@ Roblox Math Lib
 
 A mathematics library for Roblox that extends the built-in math functions.
 
-<p align="center"> <img src="https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white" alt="Lua"> <img src="https://img.shields.io/badge/Roblox-00A2FF?style=flat&logo=roblox&logoColor=white" alt="Roblox"> <img src="https://img.shields.io/badge/License-MIT-green?style=flat" alt="License"> <img src="https://img.shields.io/badge/Version-2.1.1-blue?style=flat" alt="Version"> </p>
+<p align="center"> <img src="https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white" alt="Lua"> <img src="https://img.shields.io/badge/Roblox-00A2FF?style=flat&logo=roblox&logoColor=white" alt="Roblox"> <img src="https://img.shields.io/badge/License-MIT-green?style=flat" alt="License"> <img src="https://img.shields.io/badge/Version-2.1.2-blue?style=flat" alt="Version"> </p>
 Features
 
     Noise Generation: Perlin noise (1D, 2D, 3D) with Fractional Brownian Motion (fBm)
@@ -32,6 +32,7 @@ Installation
 ```luau
 local mathlib = require(path.to.mathlib)
 ```
+
 Basic Operations
 ```luau
 
@@ -162,35 +163,6 @@ Statistical Functions
     mean(...) - Mean of values
 
     standardDeviation(...) - Standard deviation of values
-```
-Examples
-Terrain Generation with Perlin Noise
-```luau
-
-local mathlib = require(script.Parent.mathlib)
-
-for x = 1, 100 do
-    for z = 1, 100 do
-        local height = mathlib.fbm(x * 0.1, z * 0.1, 0, 4, 0.5, 2.0)
-        height = mathlib.remap(height, -1, 1, 0, 50)
-        -- Create terrain at this height
-    end
-end
-
-Smooth Camera Movement
-lua
-
-local mathlib = require(script.Parent.mathlib)
-
-function smoothFollow(camera, target, deltaTime)
-    local currentPos = camera.Position
-    local targetPos = target.Position
-    
-    local t = mathlib.easeOutQuad(deltaTime * 2)
-    local newPos = mathlib.lerp(currentPos, targetPos, t)
-    
-    camera.Position = newPos
-end
 ```
 ```luau
 Constants
