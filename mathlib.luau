@@ -9,9 +9,9 @@
     
     Advanced Mathematics Library for Roblox
     Created by .schlonny
-    Version: 2.1.1
+    Version: 2.1.2
     License: MIT
-    Github: https://github.com/zeropointerexception/roblox-mathlib
+    Github: https://github.com/Schlonny-Tech/roblox-mathlib
     
     Features:
     • Advanced noise generation (Perlin, Simplex, Value)
@@ -111,6 +111,24 @@ function mathlib.approximately(a, b, epsilon)
 	epsilon = epsilon or mathlib.EPSILON
 	return math.abs(a - b) < epsilon
 end
+
+--- Linearly maps value from one range to another with optional clamping
+--- @param value number Input value
+--- @param inMin number Original range minimum
+--- @param inMax number Original range maximum
+--- @param outMin number Target range minimum
+--- @param outMax number Target range maximum
+--- @param clamped boolean Whether to clamp output (default: true)
+--- @return number Remapped value
+function mathlib.remapClamped(value, inMin, inMax, outMin, outMax, clamped)
+	clamped = clamped == nil and true or clamped
+	local t = (value - inMin) / (inMax - inMin)
+	if clamped then
+		t = mathlib.clamp(t, 0, 1)
+	end
+	return outMin + t * (outMax - outMin)
+end
+
 
 --[[
     ========================================
@@ -391,6 +409,131 @@ function mathlib.simplexNoise2D(x, y)
 	return 70.0 * (n0 + n1 + n2)
 end
 
+--[[
+    ========================================
+    QUATERNION OPERATIONS
+    ========================================
+]]--
+
+--- Creates a quaternion from axis-angle representation
+--- @param axisX number X component of rotation axis
+--- @param axisY number Y component of rotation axis
+--- @param axisZ number Z component of rotation axis
+--- @param angle number Rotation angle in radians
+--- @return number W component
+--- @return number X component
+--- @return number Y component
+--- @return number Z component
+function mathlib.quaternionFromAxisAngle(axisX, axisY, axisZ, angle)
+	local halfAngle = angle * 0.5
+	local s = math.sin(halfAngle)
+	local norm = mathlib.magnitude(axisX, axisY, axisZ)
+	if norm > mathlib.EPSILON then
+		s = s / norm
+	end
+	local w = math.cos(halfAngle)
+	return w, axisX * s, axisY * s, axisZ * s
+end
+
+--- Multiplies two quaternions (combines rotations)
+--- @param w1 number First quaternion W
+--- @param x1 number First quaternion X
+--- @param y1 number First quaternion Y
+--- @param z1 number First quaternion Z
+--- @param w2 number Second quaternion W
+--- @param x2 number Second quaternion X
+--- @param y2 number Second quaternion Y
+--- @param z2 number Second quaternion Z
+--- @return number Result W
+--- @return number Result X
+--- @return number Result Y
+--- @return number Result Z
+function mathlib.quaternionMultiply(w1, x1, y1, z1, w2, x2, y2, z2)
+	local w = w1*w2 - x1*x2 - y1*y2 - z1*z2
+	local x = w1*x2 + x1*w2 + y1*z2 - z1*y2
+	local y = w1*y2 + y1*w2 + z1*x2 - x1*z2
+	local z = w1*z2 + z1*w2 + x1*y2 - y1*x2
+	return w, x, y, z
+end
+
+--- Converts quaternion to rotation matrix (3x3)
+--- @param w number Quaternion W
+--- @param x number Quaternion X
+--- @param y number Quaternion Y
+--- @param z number Quaternion Z
+--- @return table 3x3 rotation matrix
+function mathlib.quaternionToMatrix(w, x, y, z)
+	return {
+		{1 - 2*y*y - 2*z*z, 2*x*y - 2*w*z, 2*x*z + 2*w*y},
+		{2*x*y + 2*w*z, 1 - 2*x*x - 2*z*z, 2*y*z - 2*w*x},
+		{2*x*z - 2*w*y, 2*y*z + 2*w*x, 1 - 2*x*x - 2*y*y}
+	}
+end
+
+--[[
+    ========================================
+    BÉZIER CURVES
+    ========================================
+]]--
+
+--- Calculates quadratic Bézier point
+--- @param p0 number Start point
+--- @param p1 number Control point
+--- @param p2 number End point
+--- @param t number Interpolation factor (0-1)
+--- @return number Point on curve
+function mathlib.quadraticBezier(p0, p1, p2, t)
+	local u = 1 - t
+	return u*u*p0 + 2*u*t*p1 + t*t*p2
+end
+
+--- Calculates cubic Bézier point
+--- @param p0 number Start point
+--- @param p1 number First control point
+--- @param p2 number Second control point
+--- @param p3 number End point
+--- @param t number Interpolation factor (0-1)
+--- @return number Point on curve
+function mathlib.cubicBezier(p0, p1, p2, p3, t)
+	local u = 1 - t
+	local u2 = u*u
+	local t2 = t*t
+	return u2*u*p0 + 3*u2*t*p1 + 3*u*t2*p2 + t2*t*p3
+end
+
+--- Calculates quadratic Bézier point (2D)
+--- @param x0 number Start X
+--- @param y0 number Start Y
+--- @param x1 number Control X
+--- @param y1 number Control Y
+--- @param x2 number End X
+--- @param y2 number End Y
+--- @param t number Interpolation factor (0-1)
+--- @return number Result X
+--- @return number Result Y
+function mathlib.quadraticBezier2D(x0, y0, x1, y1, x2, y2, t)
+	local u = 1 - t
+	local u2 = u*u
+	local t2 = t*t
+
+	local x = u2*x0 + 2*u*t*x1 + t2*x2
+	local y = u2*y0 + 2*u*t*y1 + t2*y2
+	return x, y
+end
+
+--- Calculates derivative of cubic Bézier (tangent vector)
+--- @param p0 number Start point
+--- @param p1 number First control point
+--- @param p2 number Second control point
+--- @param p3 number End point
+--- @param t number Interpolation factor (0-1)
+--- @return number Tangent value
+function mathlib.bezierDerivative(p0, p1, p2, p3, t)
+	local u = 1 - t
+	return 3*u*u*(p1-p0) + 6*u*t*(p2-p1) + 3*t*t*(p3-p2)
+end
+
+
 
 --[[
     ========================================
@@ -510,6 +653,55 @@ function mathlib.angleBetween(x1, y1, z1, x2, y2, z2)
 
 	local dot = mathlib.dot(x1, y1, z1, x2, y2, z2)
 	return math.acos(mathlib.clamp(dot / (mag1 * mag2), -1, 1))
+end
+
+
+--- Checks if point is inside triangle (2D)
+--- @param px number Point X
+--- @param py number Point Y
+--- @param x1 number Triangle vertex 1 X
+--- @param y1 number Triangle vertex 1 Y
+--- @param x2 number Triangle vertex 2 X
+--- @param y2 number Triangle vertex 2 Y
+--- @param x3 number Triangle vertex 3 X
+--- @param y3 number Triangle vertex 3 Y
+--- @return boolean True if point is inside triangle
+function mathlib.pointInTriangle(px, py, x1, y1, x2, y2, x3, y3)
+	local area = 0.5 * (-y2*x3 + y1*(-x2 + x3) + x1*(y2 - y3) + x2*y3)
+	local s = 1/(2*area) * (y1*x3 - x1*y3 + (y3 - y1)*px + (x1 - x3)*py)
+	local t = 1/(2*area) * (x1*y2 - y1*x2 + (y1 - y2)*px + (x2 - x1)*py)
+	return s >= 0 and t >= 0 and (s + t) <= 1
+end
+
+--- Calculates centroid of polygon
+--- @param vertices table Array of {x, y} points
+--- @return number Centroid X
+--- @return number Centroid Y
+function mathlib.polygonCentroid(vertices)
+	local area = 0
+	local Cx = 0
+	local Cy = 0
+
+	for i = 1, #vertices do
+		local j = i % #vertices + 1
+		local xi, yi = vertices[i][1], vertices[i][2]
+		local xj, yj = vertices[j][1], vertices[j][2]
+
+		local cross = xi * yj - xj * yi
+		area = area + cross
+		Cx = Cx + (xi + xj) * cross
+		Cy = Cy + (yi + yj) * cross
+	end
+
+	area = area * 0.5
+	if math.abs(area) < mathlib.EPSILON then
+		return 0, 0
+	end
+
+	Cx = Cx / (6 * area)
+	Cy = Cy / (6 * area)
+
+	return Cx, Cy
 end
 
 --[[
@@ -872,7 +1064,7 @@ end
     ========================================
 ]]--
 
-mathlib._VERSION = "2.1.1"
+mathlib._VERSION = "2.1.2"
 mathlib._AUTHOR = ".schlonny"
 mathlib._DESCRIPTION = "Advanced mathematics library for Roblox"
 
