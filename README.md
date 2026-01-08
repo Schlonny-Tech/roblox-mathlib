@@ -1,3 +1,4 @@
+![Roblox Math Library](https://github.com/Schlonny-Tech/roblox-mathlib/raw/main/repoimage.jpg)
 Roblox Math Lib
 
 A mathematics library for Roblox that extends the built-in math functions.
