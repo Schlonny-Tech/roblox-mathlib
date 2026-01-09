@@ -1,21 +1,65 @@
-MIT License
+# Schlonny Tech Shared Source License (STS-1.0)
 
-Copyright (c) 2025 Zero
+Copyright © 2026 Schlonny Tech
+This license applies to all files and code files in this repository.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## 1. Definitions
+- "Licensor" means Schlonny Tech, the copyright holder.
+- "Licensee" or "You" means any individual or entity exercising rights granted by this license.
+- "Work" means the copyrighted material made available under this license.
+- "Single Product Sale" means offering the Work, whether modified or unmodified, as a standalone product for direct monetary compensation, including but not limited to: selling source code files individually, selling compiled binaries of the Work alone, or offering the Work as the primary product for purchase.
+- "Integrative Use" means incorporating the Work into a larger project where the Work is not the primary commercial offering.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## 2. Grant of Rights
+Subject to the terms of this license, Licensor grants You a worldwide, royalty-free, non-exclusive license to:
+a. Use: Use the Work for any purpose, personal or commercial.
+b. Modify: Create derivative works based on the Work.
+c. Distribute: Share the Work or derivative works.
+d. Integrate: Include the Work in commercial products where the Work is not the primary offering.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## 3. Restrictions
+You are expressly prohibited from:
+a. Single Product Sale: Selling, licensing, or otherwise monetizing the Work (or substantial portions thereof) as a standalone product.
+b. Removal of Attribution: Removing, obscuring, or altering copyright notices, attribution, or this license from the Work.
+
+## 4. Attribution Requirement
+If You distribute, share, or make the Work available to others, You must:
+a. Retain all original copyright notices from the Work.
+b. Include clear attribution to "Schlonny Tech" in a prominent location.
+c. Include a link to the original Work repository (if applicable).
+d. Include a copy of this license or a clear link to it.
+e. If You create derivative works, indicate what modifications were made.
+
+## 5. Examples
+✅ ALLOWED:
+- Using this code in your commercial SaaS application
+- Modifying the code for your company's internal tools
+- Sharing modified versions with friends
+- Including this code in a larger open-source project
+- Selling a product that happens to include this code as a small component
+
+❌ NOT ALLOWED:
+- Selling this source code file on its own
+- Compiling this code and selling just the binary
+- Offering this Work as the primary product for sale
+- Removing the "Copyright © 2025 Schlonny Tech" notice
+
+## 6. No Warranty & No Liability
+THE WORK IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE WORK.
+
+**THE LICENSOR (SCHLONNY TECH) ASSUMES NO RESPONSIBILITY FOR WHAT YOU DO WITH THIS WORK.** You are solely responsible for how you use, modify, or distribute this Work. The Licensor is not responsible for any outcomes, damages, or legal issues resulting from your use of the Work.
+
+## 7. Termination
+This license terminates automatically if You fail to comply with its terms. Upon termination, You must cease all use and distribution of the Work.
+
+## 8. Severability
+If any provision of this license is held to be unenforceable, the remaining provisions shall remain in full force and effect.
+
+## 9. Governing Law
+This license shall be governed by and construed in accordance with the laws applicable to the Licensor.
+
+## 10. Contact
+For permissions beyond this license, contact: company@schlonnytech.online
+
+---
+**Summary: Give credit, don't sell this code as a product, but feel free to use it in your projects. Schlonny Tech is not responsible for what you do with this code.**
