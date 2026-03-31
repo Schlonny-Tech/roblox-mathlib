@@ -211,3 +211,13 @@ Support
 
 If you have any questions or issues, please open an issue on GitHub or contact me directly.
 Discord: .schlonny
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=Schlonny-Tech%2Froblox-mathlib&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=Schlonny-Tech/roblox-mathlib&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=Schlonny-Tech/roblox-mathlib&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=Schlonny-Tech/roblox-mathlib&type=date&legend=top-left" />
+ </picture>
+</a>
